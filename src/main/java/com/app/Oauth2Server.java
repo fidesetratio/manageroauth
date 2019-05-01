@@ -1,9 +1,14 @@
 package com.app;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+
+import com.app.model.ClientDetails;
+import com.app.repo.ClientDetailsRepo;
 
 
 //curl -X POST -vu patartimotius:evievi123 http://localhost:8787/oauth/token -H "Accept: application/json" -d "password=evievi123&username=patartimotius&grant_type=password&scope=read%20write&client_secret=123456&client_id=clientapp" 
@@ -37,10 +42,21 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 
 @SpringBootApplication
-public class Oauth2Server {
+public class Oauth2Server implements CommandLineRunner {
+	
+	@Autowired 
+	private ClientDetailsRepo repo;
 	
 	public static void main(String args[]) {
 		SpringApplication.run(Oauth2Server.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		// TODO Auto-generated method stub
+		
+		List<ClientDetails> l = (List<ClientDetails>) repo.findAll();
+		System.out.println(l.size());
 	}
 
 }

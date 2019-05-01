@@ -30,10 +30,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private ConsumerTokenServices tokenService;
 	
-	 public WebSecurityConfiguration() {
-			// TODO Auto-generated constructor stub
-			 System.out.println("datasource isteng exist"+dataSource);
-		 }
 	 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
