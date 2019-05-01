@@ -29,6 +29,8 @@ public class DatabaseConfiguration {
 	  @Bean(name="jdbctokenstore") 
 	  public TokenStore tokenStore() { 
 		  TokenStore  tokenStore = new  CustomJdbcTokenStore(oauthDataSource()); 
+		 
+		//  tokenStore = new  JdbcTokenStore(oauthDataSource());
 		  return tokenStore; 
 	  }
 	
