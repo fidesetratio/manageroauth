@@ -70,6 +70,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
    	     .permitAll()
    	     .and()
          .authorizeRequests()
+         .antMatchers("/manager/**").permitAll()         
          .anyRequest().authenticated();
 		
 		
