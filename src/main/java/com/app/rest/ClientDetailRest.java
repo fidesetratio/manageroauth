@@ -19,9 +19,6 @@ import com.app.service.ClientsService;
 @RequestMapping("/manager")
 public class ClientDetailRest {
 
-	/*
-	 * @Autowired private ClientDetailsService clientDetailService;
-	 */	
 		@Autowired 
 		private ClientsService clientsService;
 		

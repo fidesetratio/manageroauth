@@ -8,6 +8,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="oauth_client_details")
 public class ClientDetails {
+	
 	@Id
 	@Column(name="client_id")
 	private String clientId;
