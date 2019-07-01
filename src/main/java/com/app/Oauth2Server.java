@@ -41,6 +41,7 @@ import com.app.repo.ClientDetailsRepo;
  */
 
 
+
 @SpringBootApplication
 public class Oauth2Server implements CommandLineRunner {
 	

@@ -3,6 +3,7 @@ package com.app.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,9 +11,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.controller.datatables.SimplePaginator;
+import com.app.controller.datatables.TablePaginator;
+import com.app.controller.datatables.models.PaginationCriteria;
+import com.app.controller.datatables.models.TablePage;
 import com.app.model.ClientDetails;
+import com.app.repo.ClientDetailsRepo;
+import com.app.service.ClientServiceTable;
 import com.app.service.ClientsService;
 
 @RestController
@@ -22,12 +30,38 @@ public class ClientDetailRest {
 		@Autowired 
 		private ClientsService clientsService;
 		
+		@Autowired 
+		private ClientDetailsRepo clientDetailsRepo;
+
+		private static Logger logger  = Logger.getLogger(ClientDetailRest.class);
+		
+		
 		@RequestMapping(value="/listclients",method=RequestMethod.GET)
 		public ResponseEntity<List<ClientDetails>> listclients() {
 			List<ClientDetails> list = new ArrayList<ClientDetails>();
 			list = clientsService.findAll();
 			return new ResponseEntity<List<ClientDetails>>(list,HttpStatus.OK);
 		}
+		
+		
+		
+		@RequestMapping(value="/listclientstable",method=RequestMethod.GET)
+		public ResponseEntity<List<ClientDetails>> listclientstable() {
+			List<ClientDetails> list = new ArrayList<ClientDetails>();
+			list = clientsService.findAll();
+			return new ResponseEntity<List<ClientDetails>>(list,HttpStatus.OK);
+		}
+		
+		
+		@RequestMapping(value="/listclientstable",method=RequestMethod.POST,produces="application/json")
+		public @ResponseBody TablePage listclientstable(@RequestBody PaginationCriteria treq){
+			logger.info("for bey11");
+			TablePaginator paginator = new SimplePaginator(new ClientServiceTable(clientDetailsRepo));
+			TablePage tablePage =  paginator.getPage(treq);
+			return tablePage;
+			
+		}
+		
 		
 		
 		@RequestMapping(value="/saveclient",method=RequestMethod.POST)
