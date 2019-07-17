@@ -76,7 +76,6 @@ public class ClientServiceTable extends DataServiceBase<ClientDetails>{
 			for(OrderingCriteria criteria : order) {
 				int column = criteria.getColumn();
 				String dir = criteria.getDir();
-
 				System.out.println("column:"+column);
 				System.out.println("direction:"+dir);
 				
@@ -93,6 +92,15 @@ public class ClientServiceTable extends DataServiceBase<ClientDetails>{
 				
 				if(column == 1) {
 					if(dir.equals("asc")) {
+						pageable =  PageRequest.of(p, length, Sort.by("clientId").ascending());
+
+					}else {
+						pageable =  PageRequest.of(p, length, Sort.by("clientId").descending());
+					}
+				};
+				
+				if(column == 2) {
+					if(dir.equals("asc")) {
 						pageable =  PageRequest.of(p, length, Sort.by("resourceIds").ascending());
 
 					}else {
@@ -100,7 +108,22 @@ public class ClientServiceTable extends DataServiceBase<ClientDetails>{
 					}
 				};
 				
-				
+				if(column == 3) {
+					if(dir.equals("asc")) {
+						pageable =  PageRequest.of(p, length, Sort.by("clientSecret").ascending());
+
+					}else {
+						pageable =  PageRequest.of(p, length, Sort.by("clientSecret").descending());
+					}
+				};
+				if(column == 4) {
+					if(dir.equals("asc")) {
+						pageable =  PageRequest.of(p, length, Sort.by("accessTokenValidity").ascending());
+
+					}else {
+						pageable =  PageRequest.of(p, length, Sort.by("accessTokenValidity").descending());
+					}
+				};
 			
 			}
 		}
@@ -119,16 +142,7 @@ public class ClientServiceTable extends DataServiceBase<ClientDetails>{
 			}
 			
 		}
-		
-		
-		/*
-		 * if(search != null) { System.out.println("search name:"+search.getValue());
-		 * System.out.println("regex:"+search.isRegex());
-		 * 
-		 * }
-		 */
-		
-		
+	
 		List<ClientDetails> list = new ArrayList<ClientDetails>();
 		
 		return page.getContent();
