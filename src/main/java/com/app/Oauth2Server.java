@@ -44,13 +44,12 @@ import com.app.repo.ClientDetailsRepo;
 
 @SpringBootApplication
 public class Oauth2Server implements CommandLineRunner {
-	
 	@Autowired 
 	private ClientDetailsRepo repo;
 	
 	public static void main(String args[]) {
 		SpringApplication.run(Oauth2Server.class, args);
-	}
+	};
 
 	@Override
 	public void run(String... args) throws Exception {
