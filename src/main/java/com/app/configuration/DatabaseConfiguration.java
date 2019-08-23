@@ -69,8 +69,7 @@ public class DatabaseConfiguration {
 	
 	
 	   public PlatformTransactionManager ds1TransactionManager() {
-		   
-	        JpaTransactionManager transactionManager = new JpaTransactionManager();
+		    JpaTransactionManager transactionManager = new JpaTransactionManager();
 	        transactionManager.setEntityManagerFactory(ds1EntityManager().getObject());
 	        return transactionManager;
 	    }
