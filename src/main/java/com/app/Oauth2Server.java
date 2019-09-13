@@ -55,6 +55,9 @@ public class Oauth2Server implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
+		
+		
+		
 		List<ClientDetails> l = (List<ClientDetails>) repo.findAll();
 		System.out.println(l.size());
 	}

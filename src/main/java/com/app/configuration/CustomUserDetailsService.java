@@ -18,7 +18,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public CustomUserDetailsService() {
         //in a real application, instead of using local data,
         // we will find user details by some other means e.g. from an external system
-        users.add(new UserObject("patartimotius", "evievi123", "USER"));
+        users.add(new UserObject("patartimotius", "evievi123", "USER99888"));
         users.add(new UserObject("mike", "234", "ADMIN"));
     }
 

@@ -66,6 +66,7 @@ public class AuthorizationConfiguration extends AuthorizationServerConfigurerAda
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 	
 		endpoints.authenticationManager(this.authenticationManager).tokenStore(tokenStore);
+		endpoints.userDetailsService(userDetailsService);
 		/*
 		.tokenEnhancer(new CustomTokenEnhancer())
 		.userDetailsService(userDetailsService);

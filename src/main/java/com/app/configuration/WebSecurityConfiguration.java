@@ -1,10 +1,8 @@
 package com.app.configuration;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -43,9 +41,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		 * "where u.username=?");
 		 */
 		
-		
-		auth.inMemoryAuthentication().withUser("patartimotius").password("evievi123").roles("USER");
-		
+		  auth.inMemoryAuthentication().withUser("patartimotius").password("evievi123").roles("USER");
+		  auth.userDetailsService(new CustomUserDetailsService());  
+	      
 	}
 	
 	
